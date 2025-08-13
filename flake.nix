@@ -69,36 +69,5 @@
           ];
         };
       };
-
-      homeConfigurations = {
-        "linux-desktop" = home-manager.lib.homeManagerConfiguration rec {
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            (import "${home-config}/home/home.nix")
-            (import "${home-config}/home/shell.nix")
-            (import "${home-config}/home/dev.nix")
-            (import "${home-config}/home/docker.nix")
-            (import "${home-config}/home/linux-desktop-apps.nix")
-            ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-            })
-            ];
-        };
-
-        "linux" = home-manager.lib.homeManagerConfiguration rec {
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            (import "${home-config}/home/home.nix")
-            (import "${home-config}/home/shell.nix")
-            (import "${home-config}/home/dev.nix")
-            (import "${home-config}/home/docker.nix")
-            ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-            })
-            ];
-        };
-      };
     };
 }
