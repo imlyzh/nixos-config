@@ -38,11 +38,15 @@
                       dotfiles=dotfiles;
                     };
                   })
+                  ({pkgs, ...}: {
+                    nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                  })
                   (import "${home-config}/home/home.nix")
                   (import "${home-config}/home/shell.nix")
                   (import "${home-config}/home/dev.nix")
                   (import "${home-config}/home/docker.nix")
                   (import "${home-config}/home/linux-desktop-apps.nix")
+
                   ];
               };
             }
