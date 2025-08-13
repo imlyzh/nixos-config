@@ -10,7 +10,7 @@
       ./machines/lyzh-nixos-laptop-hardware-configuraion.nix
     ];
 
-  settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
   # Use the systemd-boot EFI boot loader.
