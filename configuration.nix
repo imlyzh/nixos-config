@@ -1,37 +1,40 @@
-# /etc/nixos/configuration.nix
-# 小狐娘帮你改造好啦！
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs,... }:
+{ config, lib, pkgs, ... }:
+
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
     ];
 
-  home-manager = {
-    useUserPackages = true;
-    sharedModules = [../home/home.nix ../home/dev.nix ../home/shell.nix ../home/desktop_apps.nix];
-    users.lyzh = {};
-  };
+  settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nix = {
-    settings = {
-      substituters = [
-        "https://cache.nixos.org/"
-      ];
-    };
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
 
-  boot.supportedFilesystems = [ "btrfs" ];
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = ["tun"];
 
+  networking.hostName = "nixos"; # Define your hostname.
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+  # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Select internationalisation properties.
   i18n.defaultLocale = "zh_CN.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "zh_CN.UTF-8";
@@ -56,18 +59,13 @@
       fcitx5-configtool
     ];
   };
+  #console = {
+  #  font = "Lat2-Terminus16";
+  #  keyMap = "us";
+  #  useXkbConfig = true; # use xkb.options in tty.
+  #};
 
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd ${pkgs.plasma5.startplasma-wayland}/bin/startplasma-wayland";
-  #       user = "greetd";
-  #     };
-  #   };
-  # };
-
-  # 启用 KDE Plasma
+  # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -94,108 +92,57 @@
     jetbrains-mono
   ];
 
-  # programs.sway.enable = true;
-  # programs.niri.enable = true;
-  # programs.hyprland.enable = true;
+  # Configure keymap in X11
+  # services.xserver.xkb.layout = "us";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  services.smartd.enable = true;
-  # services.fstrim.enable = true;
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
-  # services.xserver.enable = true;
-  # services.displayManager.gdm.enable = true;
-
-  # programs.waybar.enable = true; # launch on startup in the default setting (bar)
-  # services.gnome.gnome-keyring.enable = true; # secret service
-  # services.polkit-gnome.enable = true; # polkit
-  # security.polkit.enable = true; # polkit
-  # security.soteria.enable = true; # polkit agent
-
-  # 5. Wayland 世界的“胶水”程序，非常重要！
-  # xdg.portal = {
-    # enable = true;
-    # extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
-    # 如果发现截图或文件选择有问题，可以把下面这个也打开
-    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    # config.common.default = "*";
-  # };
-
-  # services.xserver.xkb.options = "caps:escape";
-
-  # sound.enable = true;
-  # services.pulseaudio.enable = false;
-  # security.rtkit.enable = true;
-
-  # services.pipewire = {
-    # enable = true;
-    # pulse.enable = true;
-    # alsa.enable = true;
-    # alsa.support32Bit = true;
-    # jack.enable = true;
-  # };
-  # 色彩配置服务
-  # services.colord.enable = true;
-
-  # 地理位置服务
-  # services.geoclue2.enable = true;
-
-  services.tailscale.enable = true;
-  services.v2raya.enable = true;
-  services.mihomo.webui = pkgs.metacubexd;
-
-  services.gvfs.enable = true; # 磁盘挂载
-
-
-  # services.tlp.enable = true;
-  services.tlp.settings = {
-    # AC
-    CPU_SCALING_GOVERNOR_ON_AC = "performance";
-    CPU_BOOST_ON_AC = 1;
-    DISK_APM_LEVEL_ON_AC = "254 254";
-    # BAT
-    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    CPU_BOOST_ON_BAT = 0;
-    DISK_APM_LEVEL_ON_BAT = "128 128";
-    WIFI_PWR_ON_BAT = "on";
-    SOUND_POWER_SAVE_ON_BAT = 1;
-    USB_AUTOSUSPEND = 1;
+  # Enable sound.
+  # services.pulseaudio.enable = true;
+  # OR
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
   };
 
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lyzh = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     uid = 1001;
     shell = pkgs.zsh;
-    hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
-    packages = with pkgs; [];
+    packages = with pkgs; [
+    ];
   };
 
-  security.sudo = {
-    # 我们保留这一条：属于 wheel 组的用户不需要密码
-    wheelNeedsPassword = false;
-    # 我们新增这一条：允许在非交互式终端（比如 deploy-rs）里使用 sudo
-    extraConfig = ''
-      Defaults !requiretty
-    '';
-  };
+  programs.firefox.enable = true;
 
+  # List packages installed in system profile.
+  # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     btrfs-progs
-    greetd.tuigreet
     powertop
 
-    vim
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     curl
     git
     zsh
-
-    vscode
-    code-server
-
-    tailscale
+    #vscode
+    #code-server
+    #tailscale
     clash-verge-rev
-    v2raya
+    #v2raya
   ];
+
+  services.tailscale.enable = true;
+  services.v2raya.enable = true;
+  services.mihomo.webui = pkgs.metacubexd;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -206,33 +153,15 @@
     autoStart = true;
   };
 
-
-
   programs.zsh.enable = true;
-
-  # kde 磁盘管理软件，仅仅添加到 systemPackages 是用不了，需要 suid 提权
   programs.partition-manager.enable = true;
-
-  # 压缩解压
   programs.file-roller.enable = true;
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode"
-  ];
-
   programs.kdeconnect.enable = true;
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-volman
-      thunar-archive-plugin
-    ];
-  };
+  programs.thunar.enable = true;
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {
-    TERMINAL = "kitty";
+  #  TERMINAL = "kitty";
     RUSTUP_HOME = "\${HOME}/.rustup";
     CARGO_HOME = "\${HOME}/.cargo";
     CC = "clang";
@@ -245,29 +174,53 @@
     # SDL_IM_MODULE = "ibus";
   };
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
-  ];
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   stdenv.cc.cc.lib
+  # ];
 
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  # services.samba = {
-  #   enable = true;
-  #   settings = {
-  #     public = {
-  #       browseable = "yes";
-  #       comment = "Public samba share.";
-  #       "guest ok" = "yes";
-  #       path = "/home/lyzh/Music";
-  #       "read only" = "yes";
-  #     };
-  #   };
-  # };
-  # services.nfs.server = {
-  #   enable = true;
-  #   exports = "/home/lyzh/Music 0.0.0.0(rw,fsid=0,no_subtree_check)";
-  #   hostName = "lyzh-nixos";
-  # };
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
   networking.firewall.enable = false;
-  system.stateVersion = "25.05";
+
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "25.05"; # Did you read the comment?
+
 }
+
