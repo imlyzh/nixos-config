@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./machines/lyzh-nixos-laptop-hardware-configuraion.nix
     ];
 
   settings.experimental-features = [ "nix-command" "flakes" ];

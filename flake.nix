@@ -6,9 +6,7 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    deploy-rs.url = "github:serokell/deploy-rs";
-
+    
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,27 +19,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, rust-overlay, deploy-rs, flake-utils, ... }@inputs:
-    flake-utils.lib.eachDefaultSystem (system: {
-      apps.deploy = deploy-rs.apps.${system}.default;
-    }) // {
-      deploy = {
-        nodes = {
-          "lyzh-nixos-laptop" = {
-            hostname = "lyzh-nixos";
-            sshUser = "lyzh";
-            useSudo = true;
-            # buildOnTarget = true;
-            # magicRollback = false;
-            profiles = {
-              system = {
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."lyzh-nixos-laptop";
-              };
-            };
-          };
-        };
-      };
-
+  outputs = { self, nixpkgs, home-manager, rust-overlay, home-config, dotfiles, ... }@inputs:
+    {
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -54,6 +33,11 @@
               home-manager.useUserPackages = true;
               home-manager.users.lyzh = {
                 imports = [
+                  ({config, ...}: {
+                    _module.args = {
+                      dotfiles=dotfiles;
+                    };
+                  })
                   (import "${home-config}/home/home.nix")
                   (import "${home-config}/home/shell.nix")
                   (import "${home-config}/home/dev.nix")
