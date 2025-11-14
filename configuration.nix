@@ -133,7 +133,7 @@
     curl
     git
     zsh
-    #vscode
+    vscode
     #code-server
     #tailscale
     clash-verge-rev
@@ -147,6 +147,10 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.steam.enable = true;
+  #programs.gamemode.enable = true;
+  #hardware.steam-hardware.enable = true;  
+  hardware.xpadneo.enable = true;
+  services.blueman.enable = true;
 
   programs.clash-verge = {
     enable = true;

@@ -3,7 +3,7 @@
 
 ## usage in nixos
 ```sh
-sudo nixos-rebuild switch --flake .#
+sudo nixos-rebuild switch --flake .#lyzh-nixos-laptop
 ```
 
 ## usage in home-manager(linux)
