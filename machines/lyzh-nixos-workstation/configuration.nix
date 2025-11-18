@@ -66,8 +66,8 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.nvidiaSettings = true;
   hardware.nvidia.powerManagement.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
