@@ -19,14 +19,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, rust-overlay, home-config, dotfiles, ... }@inputs:
+  outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, ... }@inputs:
     {
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./configuration.nix
+            ./machines/lyzh-nixos-laptop/configuration.nix
             home-manager.nixosModules.home-manager
             {
               # home-manager.useGlobalPkgs = true;
@@ -56,6 +56,41 @@
             })
           ];
         };
+        "lyzh-nixos-workstation" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./machines/lyzh-nixos-workstation/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              # home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.lyzh = {
+                imports = [
+                  ({config, ...}: {
+                    _module.args = {
+                      dotfiles=dotfiles;
+                    };
+                  })
+                  ({pkgs, ...}: {
+                    nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                  })
+                  (import "${home-config}/home/home.nix")
+                  (import "${home-config}/home/shell.nix")
+                  (import "${home-config}/home/dev.nix")
+                  (import "${home-config}/home/docker.nix")
+                  (import "${home-config}/home/linux-desktop-apps.nix")
+                  (import "${home-config}/home/battlenet-games.nix")
+                  ];
+              };
+            }
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
+          ];
+        };
+
       };
     };
 }
