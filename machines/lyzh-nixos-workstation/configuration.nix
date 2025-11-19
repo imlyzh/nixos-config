@@ -118,7 +118,6 @@
     jetbrains-mono
   ];
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lyzh = {
     isNormalUser = true;
@@ -163,7 +162,6 @@
     INPUT_METHOD = "fcitx";
     SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
   };
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {
   #  TERMINAL = "kitty";
     RUSTUP_HOME = "\${HOME}/.rustup";
@@ -178,14 +176,15 @@
     # SDL_IM_MODULE = "ibus";
   };
 
+  #hardware.steam-hardware.enable = true;
+  hardware.xpadneo.enable = true;
+
+  services.blueman.enable = true;
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
   programs.steam.enable = true;
   #programs.gamemode.enable = true;
-  #hardware.steam-hardware.enable = true;
-  hardware.xpadneo.enable = true;
-  services.blueman.enable = true;
 
   programs.clash-verge = {
     enable = true;
@@ -197,7 +196,6 @@
   programs.file-roller.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

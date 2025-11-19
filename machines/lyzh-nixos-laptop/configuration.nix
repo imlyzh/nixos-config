@@ -12,7 +12,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -71,13 +70,13 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
-    INPUT_METHOD = "fcitx";
-    SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
+  services.fprintd.enable = true;
+  security.pam.services = {
+    login.fprintAuth = true;
+    sudo.fprintAuth = true;
+    # lightdm.fprintAuth = true; # lightdm
+    gdm.fprintAuth = true;    # GNOME
+    sddm.fprintAuth = true;   # KDE (Plasma)
   };
 
   fonts.packages = with pkgs; [
@@ -122,6 +121,9 @@
 
   programs.firefox.enable = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -140,30 +142,14 @@
     #v2raya
   ];
 
-  services.tailscale.enable = true;
-  services.v2raya.enable = true;
-  services.mihomo.webui = pkgs.metacubexd;
-
-  nixpkgs.config.allowUnfree = true;
-
-  programs.steam.enable = true;
-  #programs.gamemode.enable = true;
-  #hardware.steam-hardware.enable = true;
-  hardware.xpadneo.enable = true;
-  services.blueman.enable = true;
-
-  programs.clash-verge = {
-    enable = true;
-    autoStart = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
+    INPUT_METHOD = "fcitx";
+    SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
   };
-
-  programs.zsh.enable = true;
-  programs.partition-manager.enable = true;
-  programs.file-roller.enable = true;
-  programs.kdeconnect.enable = true;
-  programs.thunar.enable = true;
-
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {
   #  TERMINAL = "kitty";
     RUSTUP_HOME = "\${HOME}/.rustup";
@@ -177,6 +163,27 @@
     # INPUT_METHOD = "ibus";
     # SDL_IM_MODULE = "ibus";
   };
+
+  #hardware.steam-hardware.enable = true;
+  hardware.xpadneo.enable = true;
+
+  services.blueman.enable = true;
+  services.tailscale.enable = true;
+  services.v2raya.enable = true;
+  services.mihomo.webui = pkgs.metacubexd;
+  programs.steam.enable = true;
+  #programs.gamemode.enable = true;
+
+  programs.clash-verge = {
+    enable = true;
+    autoStart = true;
+  };
+
+  programs.zsh.enable = true;
+  programs.partition-manager.enable = true;
+  programs.file-roller.enable = true;
+  programs.kdeconnect.enable = true;
+  programs.thunar.enable = true;
 
   # programs.nix-ld.enable = true;
   # programs.nix-ld.libraries = with pkgs; [
