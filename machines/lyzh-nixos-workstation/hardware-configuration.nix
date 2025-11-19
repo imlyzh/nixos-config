@@ -19,11 +19,6 @@
       options = [ "subvol=@" "ssd" "noatime" "compress=zstd:3" "space_cache=v2" "discard=async" ];
     };
 
-  fileSystems."/nix/store" =
-    { fsType = "btrfs";
-      options = [ "subvol=@" "ro" "ssd" "relatime" "compress=zstd:3" "space_cache=v2" "discard=async" ];
-    };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/5B7D-8309";
       fsType = "vfat";
