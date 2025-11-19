@@ -6,7 +6,7 @@
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    
+
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +46,7 @@
                   (import "${home-config}/home/dev.nix")
                   (import "${home-config}/home/docker.nix")
                   (import "${home-config}/home/desktop-apps.nix")
+                  (import "${home-config}/home/linux-desktop-apps.nix")
                   (import "${home-config}/home/battlenet-games.nix")
                   ];
               };
@@ -81,6 +82,7 @@
                   (import "${home-config}/home/dev.nix")
                   (import "${home-config}/home/docker.nix")
                   (import "${home-config}/home/desktop-apps.nix")
+                  (import "${home-config}/home/linux-desktop-apps.nix")
                   (import "${home-config}/home/battlenet-games.nix")
                   ];
               };
