@@ -49,6 +49,7 @@
                   (import "${home-config}/home/battlenet-games.nix")
                   ];
               };
+              home-manager.backupFileExtension = "backup";
             }
             ({ pkgs, ... }: {
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
@@ -83,6 +84,7 @@
                   (import "${home-config}/home/battlenet-games.nix")
                   ];
               };
+              home-manager.backupFileExtension = "backup";
             }
             ({ pkgs, ... }: {
               nixpkgs.overlays = [ rust-overlay.overlays.default ];

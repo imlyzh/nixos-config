@@ -68,11 +68,12 @@
   hardware.nvidia.powerManagement.enable = true;
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vaapiVdpau libvdpau-va-gl ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -124,8 +125,6 @@
     description = "lyzh";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
     ];
   };
 
