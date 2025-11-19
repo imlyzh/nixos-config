@@ -39,11 +39,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1763587759,
-        "narHash": "sha256-FdoflOQJCFSj79gKJeBFpBbWJTL/fiERzOh6bH34pfM=",
+        "lastModified": 1763589627,
+        "narHash": "sha256-5kfoYXtFYB5GfAFKbZb9x8xXerhuDd2JAXrNsPCFpg8=",
         "owner": "imlyzh",
         "repo": "home-manager",
-        "rev": "8b08cbb774b77dcc95b11ff35f7f9ccc09f584e3",
+        "rev": "1932818a80472660a0e8470f4891bacffe6c47b6",
         "type": "github"
       },
       "original": {
