@@ -21,7 +21,7 @@
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = ["tun"];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "lyzh-nixos-laptop"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -64,13 +64,15 @@
   #  useXkbConfig = true; # use xkb.options in tty.
   #};
 
+  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
-  services.desktopManager.gnome.enable = true;
+  # services.displayManager.gdm.enable = true;
+  # services.displayManager.gdm.wayland = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+  # services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   services.fprintd.enable = true;

@@ -68,7 +68,7 @@
   hardware.nvidia.powerManagement.enable = true;
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vaapiVdpau libvdpau-va-gl ];
+  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vaapiVdpau libvdpau-va-gl intel-compute-runtime];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
