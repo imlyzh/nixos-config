@@ -11,7 +11,6 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  home-manager.backupFileExtension = "backup";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -146,7 +145,7 @@
     vim
     nano
     wget
-    curl  
+    curl
     git
     zsh
     vscode
@@ -184,7 +183,7 @@
   services.mihomo.webui = pkgs.metacubexd;
   programs.steam.enable = true;
   #programs.gamemode.enable = true;
-  #hardware.steam-hardware.enable = true;  
+  #hardware.steam-hardware.enable = true;
   hardware.xpadneo.enable = true;
   services.blueman.enable = true;
 
@@ -227,4 +226,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
+  home-manager.backupFileExtension = "backup";
 }
