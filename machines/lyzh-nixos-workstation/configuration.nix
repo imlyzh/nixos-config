@@ -11,6 +11,7 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  home-manager.backupFileExtension = "backup";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
