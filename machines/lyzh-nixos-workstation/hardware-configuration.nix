@@ -20,8 +20,7 @@
     };
 
   fileSystems."/nix/store" =
-    { device = "/dev/disk/by-uuid/c960ead5-c4ac-4487-98c1-a81b1ad96186";
-      fsType = "btrfs";
+    { fsType = "btrfs";
       options = [ "subvol=@" "ro" "ssd" "relatime" "compress=zstd:3" "space_cache=v2" "discard=async" ];
     };
 
