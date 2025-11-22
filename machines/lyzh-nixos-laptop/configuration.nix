@@ -65,7 +65,12 @@
   #};
 
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
-  
+  hardware.enableAllFirmware = true;
+  hardware.xpadneo.enable = true;
+  #hardware.steam-hardware.enable = true;
+
+
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # services.displayManager.gdm.enable = true;
@@ -169,9 +174,6 @@
     # INPUT_METHOD = "ibus";
     # SDL_IM_MODULE = "ibus";
   };
-
-  #hardware.steam-hardware.enable = true;
-  hardware.xpadneo.enable = true;
 
   services.blueman.enable = true;
   services.tailscale.enable = true;

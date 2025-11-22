@@ -69,6 +69,10 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vaapiVdpau libvdpau-va-gl intel-compute-runtime];
+  hardware.enableAllFirmware = true;
+  hardware.xpadneo.enable = true;
+  #hardware.steam-hardware.enable = true;
+
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -176,9 +180,6 @@
     # INPUT_METHOD = "ibus";
     # SDL_IM_MODULE = "ibus";
   };
-
-  #hardware.steam-hardware.enable = true;
-  hardware.xpadneo.enable = true;
 
   services.blueman.enable = true;
   services.tailscale.enable = true;
