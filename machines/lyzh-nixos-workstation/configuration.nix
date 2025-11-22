@@ -85,6 +85,8 @@
     variant = "";
   };
 
+  services.prometheus.exporters.intel_gpu.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -138,7 +140,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     btrfs-progs
+    mesa-utils
     powertop
+
+    intel-gpu-tools
 
     vim
     nano
