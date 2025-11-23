@@ -148,7 +148,8 @@
     zsh
     vscode
     #code-server
-    #tailscale
+
+    tailscale
     clash-verge-rev
     #v2raya
   ];
