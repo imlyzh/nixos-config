@@ -158,6 +158,13 @@
     tailscale
     clash-verge-rev
     #v2raya
+
+    lutris
+    wineWowPackages.stable
+    wineWowPackages.staging
+    winetricks
+    dxvk
+    vkd3d-proton
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
