@@ -204,6 +204,8 @@
   programs.clash-verge = {
     enable = true;
     autoStart = true;
+    tunMode = true;
+    serviceMode = true;
   };
 
   programs.zsh.enable = true;
