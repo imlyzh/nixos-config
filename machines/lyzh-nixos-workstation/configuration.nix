@@ -226,6 +226,13 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.nix-serve = {
+    enable = true;
+    openFirewall = true;
+    secretKeyFile = "/etc/nix/cache-keys/secret.key";
+    # port = 5000;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
