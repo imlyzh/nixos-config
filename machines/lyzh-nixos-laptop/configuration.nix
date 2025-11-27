@@ -65,7 +65,7 @@
   #  useXkbConfig = true; # use xkb.options in tty.
   #};
 
-  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
+  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   hardware.enableAllFirmware = true;
   hardware.xpadneo.enable = true;
   #hardware.steam-hardware.enable = true;
