@@ -52,10 +52,11 @@
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-rime
-      fcitx5-chinese-addons
+      # fcitx5-chinese-addons
+      qt6Packages.fcitx5-chinese-addons
       fcitx5-gtk
-
-      fcitx5-configtool
+      # fcitx5-configtool
+      qt6Packages.fcitx5-configtool
     ];
   };
   #console = {
@@ -193,7 +194,6 @@
 
   programs.zsh.enable = true;
   programs.partition-manager.enable = true;
-  programs.file-roller.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
 
