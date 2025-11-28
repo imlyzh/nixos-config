@@ -241,15 +241,16 @@
 
   services.samba = {
     enable = true;
-    enableNmbd = true;
-    shares = {
-      myshare = {
-        path = "/home/lyzh/Documents/";
-        browseable = "yes";
-        "read only" = "no";
-        "guest ok" = "no";
-      };
-    };
+    nmbd.enable = true;
+    settings =
+"""
+  public = {
+    browseable = "yes";
+    path = "/home/lyzh/Documents";
+    "guest ok" = "yes";
+    "read only" = "yes";
+  };
+"""
   };
 
 
