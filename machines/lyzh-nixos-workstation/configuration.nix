@@ -250,7 +250,7 @@
     "guest ok" = "yes";
     "read only" = "yes";
   };
-"""
+""";
   };
 
 
