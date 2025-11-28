@@ -66,7 +66,7 @@
   #};
 
   powerManagement.enable = true;
-  # powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = true;
 
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   hardware.enableAllFirmware = true;
