@@ -167,7 +167,6 @@
     clash-verge-rev
     #v2raya
 
-    krfb
     krdc
     tigervnc
     samba
