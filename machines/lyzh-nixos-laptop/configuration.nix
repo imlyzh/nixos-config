@@ -65,11 +65,13 @@
   #  useXkbConfig = true; # use xkb.options in tty.
   #};
 
+  powerManagement.enable = true;
+  # powerManagement.powertop.enable = true;
+
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   hardware.enableAllFirmware = true;
   hardware.xpadneo.enable = true;
   #hardware.steam-hardware.enable = true;
-
 
 
   # Enable the X11 windowing system.
