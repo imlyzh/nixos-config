@@ -91,6 +91,9 @@
     variant = "";
   };
 
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -164,6 +167,11 @@
     clash-verge-rev
     #v2raya
 
+    krfb
+    krdc
+    tigervnc
+    samba
+
     lutris
     wineWowPackages.stable
     wineWowPackages.staging
@@ -205,7 +213,7 @@
     enable = true;
     autoStart = true;
     tunMode = true;
-    serviceMode = true;
+    # serviceMode = true;
   };
 
   programs.zsh.enable = true;
@@ -226,9 +234,23 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.samba = {
+    enable = true;
+    enableNmbd = true;
+    shares = {
+      myshare = {
+        path = "/home/lyzh/Documents/";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+      };
+    };
+  };
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Krfb
+  # networking.firewall.allowedTCPPorts = [ 5900 3389 139 445 ];
+  # networking.firewall.allowedUDPPorts = [ 137 138 ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 

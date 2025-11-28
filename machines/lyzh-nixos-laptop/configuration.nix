@@ -191,7 +191,7 @@
     enable = true;
     autoStart = true;
     tunMode = true;
-    serviceMode = true;
+    # serviceMode = true;
   };
 
   programs.zsh.enable = true;
