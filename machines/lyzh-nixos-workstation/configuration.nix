@@ -243,14 +243,14 @@
     enable = true;
     nmbd.enable = true;
     settings =
-"""
+"
   public = {
-    browseable = "yes";
-    path = "/home/lyzh/Documents";
-    "guest ok" = "yes";
-    "read only" = "yes";
+    browseable = \"yes\";
+    path = \"/home/lyzh/Documents\";
+    \"guest ok\" = \"yes\";
+    \"read only\" = \"yes\";
   };
-""";
+";
   };
 
 
