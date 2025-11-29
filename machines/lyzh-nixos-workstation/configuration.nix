@@ -64,7 +64,7 @@
   };
 
   powerManagement.enable = true;
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
 
   hardware.nvidia.open = true;
   hardware.nvidia.modesetting.enable = true;
