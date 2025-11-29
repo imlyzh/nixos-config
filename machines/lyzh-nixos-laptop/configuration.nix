@@ -92,6 +92,7 @@
     sddm.fprintAuth = true;   # KDE (Plasma)
     polkit-1.fprintAuth = true;
   };
+  security.sudo-rs.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
