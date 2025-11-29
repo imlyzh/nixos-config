@@ -144,9 +144,6 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -208,8 +205,14 @@
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
-  programs.steam.enable = true;
-  #programs.gamemode.enable = true;
+
+  programs.git = {
+    enable = true;
+    settings.user = {
+      name = "imlyzh";
+      email = "enterindex@gmail.com";
+    };
+  };
 
   programs.clash-verge = {
     enable = true;
@@ -219,9 +222,12 @@
   };
 
   programs.zsh.enable = true;
+  programs.firefox.enable = true;
   programs.partition-manager.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
+  programs.steam.enable = true;
+  #programs.gamemode.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
