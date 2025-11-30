@@ -186,14 +186,6 @@
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
 
-  programs.git = {
-    enable = true;
-    settings.user = {
-      name = "imlyzh";
-      email = "enterindex@gmail.com";
-    };
-  };
-
   programs.clash-verge = {
     enable = true;
     autoStart = true;
