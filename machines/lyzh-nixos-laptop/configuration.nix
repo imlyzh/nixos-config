@@ -181,7 +181,7 @@
     # SDL_IM_MODULE = "ibus";
   };
 
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
