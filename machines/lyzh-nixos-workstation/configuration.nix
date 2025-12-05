@@ -205,7 +205,6 @@
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
-  programs.gamemode.enable = true;
 
   programs.clash-verge = {
     enable = true;
@@ -220,7 +219,7 @@
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
   programs.steam.enable = true;
-  #programs.gamemode.enable = true;
+  programs.gamemode.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
