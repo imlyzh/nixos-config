@@ -183,6 +183,7 @@
   };
 
   # services.blueman.enable = true;
+  services.cloudflare-warp.enable = true;
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;

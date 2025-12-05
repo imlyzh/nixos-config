@@ -33,6 +33,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.wireguard.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -202,6 +203,7 @@
   };
 
   # services.blueman.enable = true;
+  services.cloudflare-warp.enable = true;
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
