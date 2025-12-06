@@ -85,6 +85,12 @@
   services.desktopManager.plasma6.enable = true;
 
   services.fprintd.enable = true;
+  services.pcscd.enable = true;
+  services.udev.packages = [
+    pkgs.libfido2
+    pkgs.yubikey-personalization
+  ];
+
   security.pam.services = {
     login.fprintAuth = true;
     sudo.fprintAuth = true;
