@@ -27,6 +27,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./machines/lyzh-nixos-laptop/configuration.nix
+            ./machines/lyzh-nixos-laptop/matrix-services.nix
             home-manager.nixosModules.home-manager
             {
               # home-manager.useGlobalPkgs = true;
