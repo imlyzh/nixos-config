@@ -13,13 +13,13 @@
       database_backend = "rocksdb";
     };
   };
-  services.jitsi-meet.enable = true;
+  # services.jitsi-meet.enable = true;
 
   # systemd.services = {
   #   matrix-conduit.before = [ "jitsi-videobridge2.service" ];
   # };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  networking.firewall.allowedUDPPorts = [ 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 8443 ];
+  networking.firewall.allowedUDPPorts = [ 443 8443 10000 ];
 }
 
