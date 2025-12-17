@@ -140,8 +140,7 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     uid = 1001;
     shell = pkgs.zsh;
-    packages = with pkgs; [
-    ];
+    # packages = with pkgs; [];
   };
 
   # Allow unfree packages

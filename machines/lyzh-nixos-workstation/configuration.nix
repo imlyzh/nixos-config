@@ -141,8 +141,8 @@
     isNormalUser = true;
     description = "lyzh";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
+    shell = pkgs.zsh;
+    # packages = with pkgs; [];
   };
 
   # Allow unfree packages
@@ -168,6 +168,7 @@
     tailscale
     clash-verge-rev
     #v2raya
+    firefox
 
     tigervnc
     samba
@@ -215,8 +216,8 @@
     tunMode = true;
   };
 
-  programs.zsh.enable = true;
-  programs.firefox.enable = true;
+  # programs.zsh.enable = true;
+  # programs.firefox.enable = true;
   programs.partition-manager.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
