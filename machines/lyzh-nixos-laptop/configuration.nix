@@ -159,6 +159,7 @@
     zsh
     vscode
     #code-server
+    firefox
 
     tailscale
     clash-verge-rev
@@ -201,7 +202,6 @@
   };
 
   programs.zsh.enable = true;
-  programs.firefox.enable = true;
   programs.partition-manager.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
