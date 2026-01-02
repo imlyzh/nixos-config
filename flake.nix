@@ -12,6 +12,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rime-ice = {
+      url = "github:iDvel/rime-ice";
+      flake = false;
+    };
+
+    rime-without-ice = {
+      url = "github:imlyzh/rime-without-ice";
+      flake = false;
+    };
+
     home-config.url = "github:imlyzh/home-manager";
     dotfiles = {
       url = "github:imlyzh/dotfiles";
@@ -30,8 +40,7 @@
             # ./services/matrix-services.nix
             home-manager.nixosModules.home-manager
             {
-              # home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.lyzh = {
                 imports = [
                   ({config, ...}: {
@@ -43,11 +52,7 @@
                     nixpkgs.overlays = [ rust-overlay.overlays.default ];
                   })
                   (import "${home-config}/home/home.nix")
-                  (import "${home-config}/home/shell.nix")
-                  (import "${home-config}/home/shell-linux.nix")
-                  (import "${home-config}/home/dev.nix")
-                  (import "${home-config}/home/docker.nix")
-                  # (import "${home-config}/home/desktop-apps.nix")
+                  (import "${home-config}/home/common.nix")
                   (import "${home-config}/home/linux-desktop-apps.nix")
                   (import "${home-config}/home/battlenet-games.nix")
                   ];
@@ -68,8 +73,7 @@
             ./services/matrix-services.nix
             home-manager.nixosModules.home-manager
             {
-              # home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.lyzh = {
                 imports = [
                   ({config, ...}: {
@@ -81,11 +85,7 @@
                     nixpkgs.overlays = [ rust-overlay.overlays.default ];
                   })
                   (import "${home-config}/home/home.nix")
-                  (import "${home-config}/home/shell.nix")
-                  (import "${home-config}/home/shell-linux.nix")
-                  (import "${home-config}/home/dev.nix")
-                  (import "${home-config}/home/docker.nix")
-                  # (import "${home-config}/home/desktop-apps.nix")
+                  (import "${home-config}/home/common.nix")
                   (import "${home-config}/home/linux-desktop-apps.nix")
                   (import "${home-config}/home/battlenet-games.nix")
                   ];
