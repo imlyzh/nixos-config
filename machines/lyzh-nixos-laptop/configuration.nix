@@ -54,18 +54,11 @@
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-rime
-      # fcitx5-chinese-addons
       qt6Packages.fcitx5-chinese-addons
-      fcitx5-gtk
-      # fcitx5-configtool
       qt6Packages.fcitx5-configtool
+      fcitx5-gtk
     ];
   };
-  #console = {
-  #  font = "Lat2-Terminus16";
-  #  keyMap = "us";
-  #  useXkbConfig = true; # use xkb.options in tty.
-  #};
 
   powerManagement.enable = true;
   powerManagement.powertop.enable = true;
@@ -182,11 +175,12 @@
     CC = "clang";
     CXX = "clang++";
 
-    # GTK_IM_MODULE = "ibus";
-    # QT_IM_MODULE = "ibus";
-    # XMODIFIERS = "@im=ibus";
-    # INPUT_METHOD = "ibus";
-    # SDL_IM_MODULE = "ibus";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    INPUT_METHOD = "fcitx";
+    SDL_IM_MODULE = "fcitx";
+    GLFW_IM_MODULE = "ibus";
   };
 
   # services.blueman.enable = true;
@@ -198,7 +192,7 @@
   programs.clash-verge = {
     enable = true;
     autoStart = true;
-    serviceMode = true;
+    # serviceMode = true;
     tunMode = true;
   };
 
