@@ -62,8 +62,6 @@
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
 
-  services.iio-sensor-proxy.enable = true;
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -101,6 +99,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
   security.sudo-rs.enable = true;
+  security.pam.services.sudo.fprintAuth = true;
+  security.pam.services.login.fprintAuth = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lyzh = {
