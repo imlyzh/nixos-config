@@ -58,8 +58,11 @@
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver libva-vdpau-driver libvdpau-va-gl intel-compute-runtime];
   hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
+
+  services.iio-sensor-proxy.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -96,7 +99,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
   security.sudo-rs.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
