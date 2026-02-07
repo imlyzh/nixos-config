@@ -117,7 +117,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # services.libinput.enable = true;
   security.sudo-rs.enable = true;
 
   fonts.packages = with pkgs; [
