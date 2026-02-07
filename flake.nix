@@ -39,8 +39,8 @@
             ./machines/lyzh-great/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              # home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.lyzh = {
                 imports = [
                   ({config, ...}: {
@@ -106,6 +106,7 @@
             ./services/matrix-services.nix
             home-manager.nixosModules.home-manager
             {
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.lyzh = {
                 imports = [
