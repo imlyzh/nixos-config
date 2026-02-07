@@ -107,7 +107,6 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.lyzh = {
                 imports = [
                   ({config, ...}: {
