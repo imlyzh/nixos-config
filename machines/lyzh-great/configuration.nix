@@ -22,11 +22,9 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" ];
-  boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
 
-  networking.hostName = "lyzh-nixos-workstation"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "lyzh-great"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -53,40 +51,22 @@
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
   };
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      qt6Packages.fcitx5-chinese-addons
-      qt6Packages.fcitx5-configtool
-      fcitx5-gtk
-    ];
-  };
 
   powerManagement.enable = true;
-  # powerManagement.powertop.enable = true;
 
-  hardware.nvidia.open = true;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.nvidiaSettings = true;
-  hardware.nvidia.powerManagement.enable = true;
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver libva-vdpau-driver libvdpau-va-gl intel-compute-runtime];
   hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
-  #hardware.steam-hardware.enable = true;
-
 
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -94,8 +74,7 @@
     variant = "";
   };
 
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
+  # services.xrdp.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -119,21 +98,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
   security.sudo-rs.enable = true;
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    wqy_zenhei
-    wqy_microhei
-    corefonts
-    sarasa-gothic  #更纱黑体
-    source-code-pro
-    hack-font
-    fira-code
-    nerd-fonts.fira-code
-    jetbrains-mono
-  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lyzh = {
@@ -180,14 +144,14 @@
     vkd3d-proton
   ];
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
-    INPUT_METHOD = "fcitx";
-    SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
-  };
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables = {
+  #   GTK_IM_MODULE = "fcitx";
+  #   QT_IM_MODULE = "fcitx";
+  #   XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
+  #   INPUT_METHOD = "fcitx";
+  #   SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
+  # };
   environment.variables = {
   #  TERMINAL = "kitty";
     RUSTUP_HOME = "\${HOME}/.rustup";
@@ -195,20 +159,16 @@
     CC = "clang";
     CXX = "clang++";
 
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx";
-    SDL_IM_MODULE = "fcitx";
-    GLFW_IM_MODULE = "ibus";
+    # GTK_IM_MODULE = "ibus";
+    # QT_IM_MODULE = "ibus";
+    # XMODIFIERS = "@im=ibus";
+    # INPUT_METHOD = "ibus";
+    # SDL_IM_MODULE = "ibus";
   };
 
-  # services.blueman.enable = true;
-  # services.cloudflare-warp.enable = true;
   services.tailscale.enable = true;
   services.v2raya.enable = true;
   services.mihomo.webui = pkgs.metacubexd;
-
   programs.clash-verge = {
     enable = true;
     autoStart = true;
@@ -236,32 +196,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.nix-serve = {
-    enable = true;
-    openFirewall = true;
-    secretKeyFile = "/etc/nix/cache-keys/secret.key";
-    # port = 5000;
-  };
-
-  services.samba = {
-    enable = true;
-    nmbd.enable = true;
-    settings = {
-      public = {
-        browseable = "yes";
-        comment = "Public samba share.";
-        path = "/home/lyzh/Documents";
-        "guest ok" = "yes";
-        "read only" = "yes";
-      };
-    };
-  };
-
-
   # Open ports in the firewall.
-  # Krfb
-  # networking.firewall.allowedTCPPorts = [ 5900 3389 139 445 ];
-  # networking.firewall.allowedUDPPorts = [ 137 138 ];
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 

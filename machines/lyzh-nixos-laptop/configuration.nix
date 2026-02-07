@@ -65,6 +65,7 @@
 
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   hardware.enableAllFirmware = true;
+  hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
   #hardware.steam-hardware.enable = true;
 

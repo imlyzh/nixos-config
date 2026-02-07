@@ -32,6 +32,43 @@
   outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, ... }@inputs:
     {
       nixosConfigurations = {
+        "lyzh-great" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./machines/lyzh-great/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              # home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.lyzh = {
+                imports = [
+                  ({config, ...}: {
+                    _module.args = {
+                      dotfiles=dotfiles;
+                    };
+                  })
+                  ({pkgs, ...}: {
+                    nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                  })
+                  (import "${home-config}/home/home.nix")
+                  (import "${home-config}/home/shell.nix")
+                  (import "${home-config}/home/shell-linux.nix")
+                  (import "${home-config}/home/dev.nix")
+                  (import "${home-config}/home/docker.nix")
+                  # (import "${home-config}/home/desktop-apps.nix")
+                  (import "${home-config}/home/linux-desktop-apps.nix")
+                  (import "${home-config}/home/battlenet-games.nix")
+                  ];
+              };
+              home-manager.backupFileExtension = "backup";
+            }
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
+          ];
+        };
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
