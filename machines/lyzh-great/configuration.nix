@@ -110,10 +110,10 @@
   ];
 
   security.pam.services = {
-    login.fprintAuth = true;
+    # login.fprintAuth = true;
     sudo.fprintAuth = true;
     # lightdm.fprintAuth = true; # lightdm
-    # gdm.fprintAuth = true;    # GNOME
+    gdm.fprintAuth = true;    # GNOME
     # sddm.fprintAuth = true;   # KDE (Plasma)
     polkit-1.fprintAuth = true;
   };
