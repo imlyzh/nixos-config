@@ -101,7 +101,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-  services.wacom.enable = true;
   services.fprintd.enable = true;
   security.sudo-rs.enable = true;
   security.pam.services.sudo.fprintAuth = true;
