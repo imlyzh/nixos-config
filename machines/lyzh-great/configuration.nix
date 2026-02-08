@@ -201,6 +201,8 @@
   programs.thunar.enable = true;
   programs.steam.enable = true;
   programs.gamemode.enable = true;
+  programs.gamescope.enable = true;
+  programs.mangohud.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
