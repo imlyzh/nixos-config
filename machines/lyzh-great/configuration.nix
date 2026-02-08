@@ -59,7 +59,6 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ vulkan-intel intel-media-driver vpl-gpu-rt intel-compute-runtime ];
-  hardware.intel-npu.enable = true;
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
   hardware.bluetooth.enable = true;
