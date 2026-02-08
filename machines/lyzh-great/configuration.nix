@@ -21,7 +21,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = [ "tun" ];
+  boot.kernelModules = [ "xe" "tun" ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -53,14 +53,17 @@
   };
 
   powerManagement.enable = true;
+  services.fwupd.enable = true;
+  services.thermald.enable = true;
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver libva-vdpau-driver libvdpau-va-gl intel-compute-runtime];
+  hardware.graphics.extraPackages = with pkgs; [ vulkan-intel intel-media-driver vpl-gpu-rt intel-compute-runtime ];
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
+  hardware.sensor.iio.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -98,6 +101,8 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
+  services.wacom.enable = true;
+  services.fprintd.enable = true;
   security.sudo-rs.enable = true;
   security.pam.services.sudo.fprintAuth = true;
   security.pam.services.login.fprintAuth = true;
