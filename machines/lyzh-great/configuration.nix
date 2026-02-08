@@ -39,7 +39,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "zh_CN.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "zh_CN.UTF-8";
     LC_IDENTIFICATION = "zh_CN.UTF-8";
@@ -50,6 +49,12 @@
     LC_PAPER = "zh_CN.UTF-8";
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
+  };
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      rime
+    ];
   };
 
   hardware.graphics.enable = true;
@@ -163,26 +168,20 @@
     vkd3d-proton
   ];
 
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  # environment.sessionVariables = {
-  #   GTK_IM_MODULE = "fcitx";
-  #   QT_IM_MODULE = "fcitx";
-  #   XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
-  #   INPUT_METHOD = "fcitx";
-  #   SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
-  # };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {
-  #  TERMINAL = "kitty";
+    TERMINAL = "ghostty";
     RUSTUP_HOME = "\${HOME}/.rustup";
     CARGO_HOME = "\${HOME}/.cargo";
     CC = "clang";
     CXX = "clang++";
 
-    # GTK_IM_MODULE = "ibus";
-    # QT_IM_MODULE = "ibus";
-    # XMODIFIERS = "@im=ibus";
-    # INPUT_METHOD = "ibus";
-    # SDL_IM_MODULE = "ibus";
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
+    INPUT_METHOD = "ibus";
+    SDL_IM_MODULE = "ibus";
+    GLFW_IM_MODULE = "ibus";
   };
 
   services.tailscale.enable = true;
