@@ -52,10 +52,6 @@
     LC_TIME = "zh_CN.UTF-8";
   };
 
-  powerManagement.enable = true;
-  services.fwupd.enable = true;
-  services.thermald.enable = true;
-
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vpl-gpu-rt intel-compute-runtime ];
@@ -64,6 +60,10 @@
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
   hardware.sensor.iio.enable = true;
+
+  powerManagement.enable = true;
+  services.fwupd.enable = true;
+  services.thermald.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -103,8 +103,20 @@
   services.libinput.enable = true;
   services.fprintd.enable = true;
   security.sudo-rs.enable = true;
-  security.pam.services.sudo.fprintAuth = true;
-  security.pam.services.login.fprintAuth = true;
+  services.pcscd.enable = true;
+  services.udev.packages = [
+    pkgs.libfido2
+    pkgs.yubikey-personalization
+  ];
+
+  security.pam.services = {
+    login.fprintAuth = true;
+    sudo.fprintAuth = true;
+    # lightdm.fprintAuth = true; # lightdm
+    gdm.fprintAuth = true;    # GNOME
+    sddm.fprintAuth = true;   # KDE (Plasma)
+    polkit-1.fprintAuth = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lyzh = {
