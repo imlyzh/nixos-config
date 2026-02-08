@@ -51,7 +51,8 @@
     LC_TIME = "zh_CN.UTF-8";
   };
   i18n.inputMethod = {
-    enabled = "ibus";
+    enable = true;
+    type = "ibus";
     ibus.engines = with pkgs.ibus-engines; [
       rime
     ];
