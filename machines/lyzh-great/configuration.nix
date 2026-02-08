@@ -122,7 +122,7 @@
   users.users.lyzh = {
     isNormalUser = true;
     description = "lyzh";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "input" ];
     shell = pkgs.zsh;
     # packages = with pkgs; [];
   };
