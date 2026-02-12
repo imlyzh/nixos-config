@@ -67,6 +67,8 @@
   hardware.xpadneo.enable = true;
   hardware.sensor.iio.enable = true;
 
+  zramSwap.enable = true;
+
   powerManagement.enable = true;
   services.fwupd.enable = true;
   services.thermald.enable = true;
