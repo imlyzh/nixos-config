@@ -81,7 +81,11 @@
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
+  # services.displayManager.sddm.enable = true;
   services.desktopManager.gnome.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  programs.ssh.askPassword = "${pkgs.zenity}/bin/zenity";
 
   # Configure keymap in X11
   services.xserver.xkb = {
