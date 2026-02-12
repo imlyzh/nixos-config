@@ -18,10 +18,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = [ "xe" "tun" ];
+  boot.kernelModules = [ "intel_hfi" "xe" "tun" ];
+  boot.kernelParams = [ "intel_pstate=active" "threadirqs" ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -70,8 +71,10 @@
   zramSwap.enable = true;
 
   powerManagement.enable = true;
-  services.fwupd.enable = true;
   services.thermald.enable = true;
+  services.power-profiles-daemon.enable = true;
+
+  services.fwupd.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
