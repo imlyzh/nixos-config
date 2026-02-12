@@ -51,11 +51,21 @@
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
   };
+  # i18n.inputMethod = {
+  #   enable = true;
+  #   type = "ibus";
+  #   ibus.engines = with pkgs.ibus-engines; [
+  #     rime
+  #   ];
+  # };
   i18n.inputMethod = {
     enable = true;
-    type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      rime
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      qt6Packages.fcitx5-chinese-addons
+      qt6Packages.fcitx5-configtool
+      fcitx5-gtk
     ];
   };
 
@@ -80,8 +90,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  # services.displayManager.sddm.enable = true;
+  # services.displayManager.gdm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
 
@@ -188,12 +198,14 @@
     CC = "clang";
     CXX = "clang++";
 
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
-    INPUT_METHOD = "ibus";
-    SDL_IM_MODULE = "ibus";
-    GLFW_IM_MODULE = "ibus";
+    NIXOS_OZONE_WL = "1";
+
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    INPUT_METHOD = "fcitx";
+    SDL_IM_MODULE = "fcitx";
+    GLFW_IM_MODULE = "fcitx";
   };
 
   services.tailscale.enable = true;
