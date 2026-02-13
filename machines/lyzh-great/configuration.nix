@@ -22,7 +22,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "intel_hfi" "xe" "tun" ];
-  boot.kernelParams = [ "intel_pstate=active" "threadirqs" ];
+  boot.kernelParams = [ "intel_pstate=active" ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -71,7 +71,7 @@
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vpl-gpu-rt intel-compute-runtime ];
+  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver vpl-gpu-rt intel-compute-runtime libvdpau-va-gl ];
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
   hardware.bluetooth.enable = true;
