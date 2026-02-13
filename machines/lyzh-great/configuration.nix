@@ -22,7 +22,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "intel_hfi" "xe" "tun" ];
-  boot.kernelParams = [ "intel_pstate=active" ];
+  boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -81,6 +81,13 @@
   zramSwap.enable = true;
 
   powerManagement.enable = true;
+  powerManagement.resumeCommands = ''
+    ${pkgs.systemd}/bin/systemctl restart fprintd
+  '';
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
+  '';
+
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = true;
 
