@@ -21,8 +21,8 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = [ "intel_hfi" "xe" "tun" "hp-wmi" ];
-  boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" ];
+  boot.kernelModules = [ "intel_hfi" "xe" "tun" ];
+  boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" "acpi_osi=!" "acpi_osi=Linux" "acpi_osi=Linux-HPI-Hybrid-Graphics" ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
