@@ -26,7 +26,7 @@
     "intel_pstate=active"
     "usbcore.autosuspend=-1"
     "acpi_osi=!"
-    "acpi_osi=Windows 2017"
+    "acpi_osi=\"Windows 2017\""
     ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
