@@ -21,7 +21,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = [ "intel_hfi" "xe" "tun" ];
+  boot.kernelModules = [ "intel_hfi" "xe" "tun" "hp-wmi" ];
   boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" ];
 
   networking.hostName = "lyzh-great"; # Define your hostname.
