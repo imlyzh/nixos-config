@@ -22,6 +22,7 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = ["tun"];
+  boot.kernelParams = [ "amd_pstate=active" "usbcore.autosuspend=-1" ];
 
   networking.hostName = "lyzh-nixos-laptop"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -69,6 +70,11 @@
   hardware.xpadneo.enable = true;
   #hardware.steam-hardware.enable = true;
 
+  services.scx.enable = true;
+  services.scx.scheduler = "scx_lavd";
+  services.power-profiles-daemon.enable = false;
+
+  services.fwupd.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

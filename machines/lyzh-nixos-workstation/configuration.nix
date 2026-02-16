@@ -23,7 +23,7 @@
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+  boot.kernelParams = [ "amd_pstate=active" "nvidia-drm.modeset=1" ];
 
   networking.hostName = "lyzh-nixos-workstation"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -79,6 +79,11 @@
   hardware.xpadneo.enable = true;
   #hardware.steam-hardware.enable = true;
 
+  services.scx.enable = true;
+  services.scx.scheduler = "scx_lavd";
+  services.power-profiles-daemon.enable = false;
+
+  services.fwupd.enable = true;
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.

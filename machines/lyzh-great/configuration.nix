@@ -93,8 +93,6 @@
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = false;
 
-
-
   services.fwupd.enable = true;
 
   # Enable the X11 windowing system.
