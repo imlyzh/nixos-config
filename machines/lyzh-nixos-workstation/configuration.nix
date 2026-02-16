@@ -18,12 +18,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelParams = [ "amd_pstate=active" "nvidia-drm.modeset=1" ];
+  boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" "nvidia-drm.modeset=1" ];
 
   networking.hostName = "lyzh-nixos-workstation"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
