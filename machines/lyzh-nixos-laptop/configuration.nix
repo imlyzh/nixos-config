@@ -22,9 +22,9 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" "tcp_bbr" ];
-  boot.kernelParams = [ "amd_pstate=active" "usbcore.autosuspend=-1" ];
+  boot.kernelParams = [ "amd_pstate=active" "threadirqs" "usbcore.autosuspend=-1" ];
   boot.kernel.sysctl = {
-    "net.core.default_qdisc" = "fq";
+    "net.core.default_qdisc" = "cake";
     "net.ipv4.tcp_congestion_control" = "bbr";
   };
 
@@ -75,7 +75,7 @@
   #hardware.steam-hardware.enable = true;
 
   services.scx.enable = true;
-  services.scx.scheduler = "scx_lavd";
+  services.scx.scheduler = "scx_rustland";
   services.power-profiles-daemon.enable = false;
 
   services.fwupd.enable = true;
