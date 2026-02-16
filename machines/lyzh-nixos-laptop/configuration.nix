@@ -21,8 +21,12 @@
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = ["tun"];
+  boot.kernelModules = [ "tun" "tcp_bbr" ];
   boot.kernelParams = [ "amd_pstate=active" "usbcore.autosuspend=-1" ];
+  boot.kernel.sysctl = {
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
 
   networking.hostName = "lyzh-nixos-laptop"; # Define your hostname.
   # Pick only one of the below networking options.

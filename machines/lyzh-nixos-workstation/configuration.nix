@@ -21,9 +21,13 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = [ "tun" ];
+  boot.kernelModules = [ "tun" "tcp_bbr" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" "nvidia-drm.modeset=1" ];
+  boot.kernel.sysctl = {
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
 
   networking.hostName = "lyzh-nixos-workstation"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
