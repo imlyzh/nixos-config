@@ -16,20 +16,20 @@
   fileSystems."/" =
     { device = "/dev/disk/by-label/MAIN";
       fsType = "btrfs";
-      options = [ "subvol=@root" "ssd" "noatime" "compress=zstd:3" ];
+      options = [ "subvol=@root" "ssd" "noatime" "compress=zstd:3" "discard=async" ];
     };
 
   fileSystems."/nix" =
     { device = "/dev/disk/by-label/MAIN";
       fsType = "btrfs";
-      options = [ "subvol=nix" "ssd" "noatime" "compress-force=zstd:5"];
+      options = [ "subvol=nix" "ssd" "noatime" "compress-force=zstd:5" "discard=async"];
       depends = [ "/" ];
     };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-label/MAIN";
       fsType = "btrfs";
-      options = [ "subvol=home" "ssd" "noatime" "compress-force=zstd:1" "autodefrag" ];
+      options = [ "subvol=home" "ssd" "noatime" "compress-force=zstd:1" "discard=async" "autodefrag" ];
       depends = [ "/" ];
     };
 
