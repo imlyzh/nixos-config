@@ -25,6 +25,17 @@
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" "nvidia-drm.modeset=1" ];
 
+  boot.kernel.sysctl = {
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+
+    "net.core.rmem_max" = 67108864;
+    "net.core.wmem_max" = 67108864;
+    "net.ipv4.tcp_rmem" = "4096 87380 67108864";
+    "net.ipv4.tcp_wmem" = "4096 65536 67108864";
+    "net.ipv4.tcp_mtu_probing" = 1;
+  };
+
   networking.hostName = "lyzh-nixos-workstation"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
