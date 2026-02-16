@@ -270,36 +270,6 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-
-  services.resolved.enable = false;
-  services.smartdns = {
-    enable = true;
-    settings = {
-      dualstack-ip-selection = "yes";
-      speed-check-mode = "ping,tcp:80";
-
-      server-https = [
-        "https://dns.alidns.com/dns-query"
-        "https://doh.pub/dns-query"
-      ];
-
-      server = [
-        "223.5.5.5"
-        "119.29.29.29"
-        "114,114,114,114"
-      ];
-
-      # domain-rules = [
-      #   "/battle.net/ -speed-check-mode tcp:80"
-      #   "/blizzard.com/ -speed-check-mode tcp:80"
-      # ];
-    };
-  };
-
-  networking.nameservers = [ "127.0.0.1" ];
-  networking.networkmanager.dns = "none";
-
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
