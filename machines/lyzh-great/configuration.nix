@@ -55,23 +55,35 @@
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
   };
-  # i18n.inputMethod = {
-  #   enable = true;
-  #   type = "ibus";
-  #   ibus.engines = with pkgs.ibus-engines; [
-  #     rime
-  #   ];
-  # };
+
   i18n.inputMethod = {
     enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      qt6Packages.fcitx5-chinese-addons
-      qt6Packages.fcitx5-configtool
-      fcitx5-gtk
+    type = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      rime
     ];
   };
+  # environment.sessionVariables = {
+  #   INPUT_METHOD = "ibus";
+  #   SDL_IM_MODULE = "ibus";
+  #   GLFW_IM_MODULE = "ibus";
+  # };
+
+  # i18n.inputMethod = {
+  #   enable = true;
+  #   type = "fcitx5";
+  #   fcitx5.addons = with pkgs; [
+  #     fcitx5-rime
+  #     qt6Packages.fcitx5-chinese-addons
+  #     qt6Packages.fcitx5-configtool
+  #     fcitx5-gtk
+  #   ];
+  # };
+  # environment.sessionVariables = {
+  #   INPUT_METHOD = "fcitx";
+  #   SDL_IM_MODULE = "fcitx";
+  #   GLFW_IM_MODULE = "fcitx";
+  # };
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
@@ -212,13 +224,6 @@
     CXX = "clang++";
 
     NIXOS_OZONE_WL = "1";
-
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx";
-    SDL_IM_MODULE = "fcitx";
-    GLFW_IM_MODULE = "fcitx";
   };
 
   services.tailscale.enable = true;
