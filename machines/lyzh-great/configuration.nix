@@ -107,7 +107,12 @@
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
   services.thermald.enable = true;
-  services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = true;
+  # services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.settings = {
+  #   battery = { governor = "powersave"; energy_performance_preference = "power"; turbo = "never"; };
+  #   charger = { governor = "performance"; energy_performance_preference = "performance"; turbo = "always"; };
+  # };
 
   services.fwupd.enable = true;
 
