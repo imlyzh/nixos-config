@@ -22,7 +22,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "intel_hfi" "xe" "tun" "tcp_bbr" ];
-  boot.kernelParams = [ "intel_pstate=active" "usbcore.autosuspend=-1" ];
+  boot.kernelParams = [ "intel_pstate=active" "intel_hfi=on" "threadirqs" "usbcore.autosuspend=-1" ];
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq_codel";
     "net.ipv4.tcp_congestion_control" = "bbr";
