@@ -104,6 +104,7 @@
     ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
   '';
 
+  services.irqbalance.enable = false;
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
   services.thermald.enable = true;
