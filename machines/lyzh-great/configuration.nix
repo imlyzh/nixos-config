@@ -106,7 +106,8 @@
 
   services.irqbalance.enable = false;
   services.scx.enable = true;
-  services.scx.scheduler = "scx_lavd";
+  # services.scx.scheduler = "scx_lavd";
+  services.scx.scheduler = "scx_bpfland";
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;

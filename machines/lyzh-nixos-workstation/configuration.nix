@@ -84,7 +84,8 @@
   #hardware.steam-hardware.enable = true;
 
   services.scx.enable = true;
-  services.scx.scheduler = "scx_lavd";
+  # services.scx.scheduler = "scx_lavd";
+  services.scx.scheduler = "scx_bpfland";
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
   # services.auto-cpufreq.settings = {
