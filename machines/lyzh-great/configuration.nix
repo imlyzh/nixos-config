@@ -193,7 +193,8 @@
     btrfs-progs
     powertop
 
-    intel-gpu-tools
+    libva-utils
+    nvtopPackages.intel
 
     vim
     nano
