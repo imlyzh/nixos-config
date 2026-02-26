@@ -221,6 +221,9 @@
     vkd3d-proton
 
     mangohud
+
+    rnote
+    openboard
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
