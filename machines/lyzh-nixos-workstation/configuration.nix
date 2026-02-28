@@ -75,6 +75,7 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.nvidiaSettings = true;
   hardware.nvidia.powerManagement.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver libva-vdpau-driver libvdpau-va-gl intel-compute-runtime];
