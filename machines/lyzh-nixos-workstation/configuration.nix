@@ -18,9 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages;
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" "tcp_bbr" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
