@@ -24,7 +24,15 @@
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" "tcp_bbr" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelParams = [ "intel_pstate=active" "intel_hfi=on" "threadirqs" "usbcore.autosuspend=-1" "nvidia-drm.modeset=1" ];
+  boot.kernelParams = [
+    "intel_pstate=active"
+    "intel_hfi=on"
+    "threadirqs"
+    "irqaffinity=16-23"
+    "rcu_nocbs=0-15"
+    "usbcore.autosuspend=-1"
+    "nvidia-drm.modeset=1"
+  ];
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
