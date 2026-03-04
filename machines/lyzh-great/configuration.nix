@@ -219,6 +219,10 @@
     tigervnc
     samba
 
+    adwaita-icon-theme
+    breeze-icons
+    hicolor-icon-theme
+
     lutris
     wineWowPackages.stable
     wineWowPackages.staging
