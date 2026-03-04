@@ -27,9 +27,11 @@
       url = "github:imlyzh/dotfiles";
       flake = false;
     };
+
+    xremap-flake.url = "github:xremap/nix-flake";
   };
 
-  outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, ... }@inputs:
+  outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, xremap-flake, ... }@inputs:
     {
       nixosConfigurations = {
         "lyzh-great" = nixpkgs.lib.nixosSystem {
@@ -63,6 +65,7 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
+            xremap-flake.nixosModules.default
           ];
         };
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
@@ -96,6 +99,7 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
+            xremap-flake.nixosModules.default
           ];
         };
         "lyzh-nixos-workstation" = nixpkgs.lib.nixosSystem {
@@ -129,6 +133,7 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
+            xremap-flake.nixosModules.default
           ];
         };
 

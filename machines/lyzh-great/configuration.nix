@@ -223,6 +223,8 @@
     adwaita-icon-theme
     hicolor-icon-theme
 
+    gnomeExtensions.xremap
+
     lutris
     wineWowPackages.stable
     wineWowPackages.staging
@@ -245,6 +247,60 @@
     CXX = "clang++";
 
     NIXOS_OZONE_WL = "1";
+  };
+
+  services.xremap = {
+    withGnome = true;
+    # withKde = true;
+    # withX11 = true;
+
+  yamlConfig = ''
+    keymap:
+      - name: "macOS 核心快捷键 (Command 转 Ctrl)"
+        remap:
+          # ================= 基础编辑 =================
+          Super-c: C-c       # 复制 (Cmd+C -> Ctrl+C)
+          Super-v: C-v       # 粘贴 (Cmd+V -> Ctrl+V)
+          Super-x: C-x       # 剪切 (Cmd+X -> Ctrl+X)
+          Super-z: C-z       # 撤销 (Cmd+Z -> Ctrl+Z)
+          Super-Shift-z: C-Shift-z # 重做 (Cmd+Shift+Z -> Ctrl+Shift+Z)
+          Super-a: C-a       # 全选 (Cmd+A -> Ctrl+A)
+          Super-f: C-f       # 查找 (Cmd+F -> Ctrl+F)
+          Super-s: C-s       # 保存 (Cmd+S -> Ctrl+S)
+          Super-p: C-p       # 打印 (Cmd+P -> Ctrl+P)
+          Super-o: C-o       # 打开 (Cmd+O -> Ctrl+O)
+
+          # ================= 窗口与标签页 =================
+          Super-w: C-w       # 关闭当前标签页 (Cmd+W -> Ctrl+W)
+          Super-t: C-t       # 新建标签页 (Cmd+T -> Ctrl+T)
+          Super-n: C-n       # 新建窗口 (Cmd+N -> Ctrl+N)
+          Super-r: C-r       # 刷新 (Cmd+R -> Ctrl+R)
+          Super-q: Alt-F4    # 退出程序 (Cmd+Q -> Alt+F4，Linux通用退出)
+
+          # ================= 文本光标移动 (Mac 灵魂) =================
+          Super-left: Home        # Cmd+左 -> 跳到行首
+          Super-right: End        # Cmd+右 -> 跳到行尾
+          Super-up: C-Home        # Cmd+上 -> 跳到文档开头
+          Super-down: C-End       # Cmd+下 -> 跳到文档结尾
+
+          # ================= 带选中的光标移动 =================
+          Super-Shift-left: Shift-Home    # Cmd+Shift+左 -> 选中到行首
+          Super-Shift-right: Shift-End    # Cmd+Shift+右 -> 选中到行尾
+          Super-Shift-up: C-Shift-Home    # Cmd+Shift+上 -> 选中到开头
+          Super-Shift-down: C-Shift-End   # Cmd+Shift+下 -> 选中到结尾
+
+      - name: "终端特例 (终端内 Command 转 Ctrl+Shift)"
+        application:
+          # 注意：请把你使用的终端名称加到这个列表里！
+          only: [gnome-terminal, ghostty, kitty, alacritty, konsole, wezterm, foot]
+        remap:
+          # 终端里依然按 Cmd+C/V，但系统会发送 Ctrl+Shift+C/V 给终端
+          Super-c: C-Shift-c     # 终端复制
+          Super-v: C-Shift-v     # 终端粘贴
+          Super-t: C-Shift-t     # 终端新建标签页
+          Super-w: C-Shift-w     # 终端关闭标签页
+          Super-f: C-Shift-f     # 终端搜索
+  '';
   };
 
   services.tailscale.enable = true;
