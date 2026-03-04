@@ -132,6 +132,7 @@
   # services.displayManager.sddm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "gnome";
 
   programs.ssh.askPassword = "${pkgs.zenity}/bin/zenity";
 
