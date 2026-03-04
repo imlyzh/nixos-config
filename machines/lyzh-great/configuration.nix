@@ -219,8 +219,8 @@
     tigervnc
     samba
 
+    # breeze-icons
     adwaita-icon-theme
-    breeze-icons
     hicolor-icon-theme
 
     lutris
