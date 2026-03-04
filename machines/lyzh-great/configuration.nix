@@ -106,9 +106,9 @@
   # powerManagement.resumeCommands = ''
   #   ${pkgs.systemd}/bin/systemctl restart fprintd
   # '';
-  # services.udev.extraRules = ''
-  #   ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
-  # '';
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
+  '';
 
   services.irqbalance.enable = false;
   services.scx.enable = true;
