@@ -138,6 +138,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "cn";
+    options = "caps:escape";
     variant = "";
   };
 
@@ -256,51 +257,48 @@
     # withX11 = true;
 
   yamlConfig = ''
-    keymap:
-      - name: "macOS 核心快捷键 (Command 转 Ctrl)"
-        remap:
-          # ================= 基础编辑 =================
-          Super-c: C-c       # 复制 (Cmd+C -> Ctrl+C)
-          Super-v: C-v       # 粘贴 (Cmd+V -> Ctrl+V)
-          Super-x: C-x       # 剪切 (Cmd+X -> Ctrl+X)
-          Super-z: C-z       # 撤销 (Cmd+Z -> Ctrl+Z)
-          Super-Shift-z: C-Shift-z # 重做 (Cmd+Shift+Z -> Ctrl+Shift+Z)
-          Super-a: C-a       # 全选 (Cmd+A -> Ctrl+A)
-          Super-f: C-f       # 查找 (Cmd+F -> Ctrl+F)
-          Super-s: C-s       # 保存 (Cmd+S -> Ctrl+S)
-          Super-p: C-p       # 打印 (Cmd+P -> Ctrl+P)
-          Super-o: C-o       # 打开 (Cmd+O -> Ctrl+O)
+keymap:
+  - name: "macOS 核心快捷键 (使用物理 Alt 键模拟 Cmd)"
+    remap:
+      # ================= 基础编辑 =================
+      Alt-c: C-c       # 大拇指 Alt+C -> 发送 Ctrl+C (复制)
+      Alt-v: C-v       # 大拇指 Alt+V -> 发送 Ctrl+V (粘贴)
+      Alt-x: C-x       # 剪切
+      Alt-z: C-z       # 撤销
+      Alt-Shift-z: C-Shift-z # 重做
+      Alt-a: C-a       # 全选
+      Alt-s: C-s       # 保存
+      Alt-f: C-f       # 查找
+      Alt-p: C-p       # 打印
 
-          # ================= 窗口与标签页 =================
-          Super-w: C-w       # 关闭当前标签页 (Cmd+W -> Ctrl+W)
-          Super-t: C-t       # 新建标签页 (Cmd+T -> Ctrl+T)
-          Super-n: C-n       # 新建窗口 (Cmd+N -> Ctrl+N)
-          Super-r: C-r       # 刷新 (Cmd+R -> Ctrl+R)
-          Super-q: Alt-F4    # 退出程序 (Cmd+Q -> Alt+F4，Linux通用退出)
+      # ================= 窗口与标签页 =================
+      Alt-w: C-w       # 关闭当前标签页
+      Alt-t: C-t       # 新建标签页
+      Alt-n: C-n       # 新建窗口
+      Alt-q: Alt-F4    # 退出程序 (完美复刻 Cmd+Q！)
 
-          # ================= 文本光标移动 (Mac 灵魂) =================
-          Super-left: Home        # Cmd+左 -> 跳到行首
-          Super-right: End        # Cmd+右 -> 跳到行尾
-          Super-up: C-Home        # Cmd+上 -> 跳到文档开头
-          Super-down: C-End       # Cmd+下 -> 跳到文档结尾
+      # ================= 文本光标移动 (Mac 灵魂) =================
+      Alt-left: Home        # Cmd+左 -> 跳到行首
+      Alt-right: End        # Cmd+右 -> 跳到行尾
+      Alt-up: C-Home        # Cmd+上 -> 跳到文档开头
+      Alt-down: C-End       # Cmd+下 -> 跳到文档结尾
 
-          # ================= 带选中的光标移动 =================
-          Super-Shift-left: Shift-Home    # Cmd+Shift+左 -> 选中到行首
-          Super-Shift-right: Shift-End    # Cmd+Shift+右 -> 选中到行尾
-          Super-Shift-up: C-Shift-Home    # Cmd+Shift+上 -> 选中到开头
-          Super-Shift-down: C-Shift-End   # Cmd+Shift+下 -> 选中到结尾
+      # ================= 按单词跳跃 (Mac 里的 Option 键) =================
+      # 在 PC 键盘上，Win 键的位置恰好对应 Mac 的 Option 键
+      Super-left: C-left    # Win+左 -> 按单词向左跳
+      Super-right: C-right  # Win+右 -> 按单词向右跳
 
-      - name: "终端特例 (终端内 Command 转 Ctrl+Shift)"
-        application:
-          # 注意：请把你使用的终端名称加到这个列表里！
-          only: [gnome-terminal, ghostty, kitty, alacritty, konsole, wezterm, foot]
-        remap:
-          # 终端里依然按 Cmd+C/V，但系统会发送 Ctrl+Shift+C/V 给终端
-          Super-c: C-Shift-c     # 终端复制
-          Super-v: C-Shift-v     # 终端粘贴
-          Super-t: C-Shift-t     # 终端新建标签页
-          Super-w: C-Shift-w     # 终端关闭标签页
-          Super-f: C-Shift-f     # 终端搜索
+  - name: "终端特例 (保护终端的进程终止功能)"
+    application:
+      # ⚠️ 注意：填入你真实使用的终端名字
+      only: [gnome-terminal, ghostty, kitty, alacritty, konsole, wezterm, foot]
+    remap:
+      # 在终端里，大拇指按 Alt+C 发送 Ctrl+Shift+C (复制)
+      # 小拇指按真正的 Ctrl+C 依然会原样传递给终端 (终止进程)
+      Alt-c: C-Shift-c
+      Alt-v: C-Shift-v
+      Alt-t: C-Shift-t
+      Alt-w: C-Shift-w
   '';
   };
 
