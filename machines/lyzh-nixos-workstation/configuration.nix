@@ -27,7 +27,9 @@
     "intel_hfi=on"
     "threadirqs"
     "irqaffinity=16-23"
+    "isolcpus=managed_irq,0-15"
     "rcu_nocbs=0-15"
+    "nohz_full=0-15"
     "usbcore.autosuspend=-1"
     "nvidia-drm.modeset=1"
   ];
