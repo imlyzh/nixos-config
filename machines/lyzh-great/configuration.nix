@@ -103,12 +103,12 @@
   zramSwap.enable = true;
 
   powerManagement.enable = true;
-  powerManagement.resumeCommands = ''
-    ${pkgs.systemd}/bin/systemctl restart fprintd
-  '';
-  services.udev.extraRules = ''
-    ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
-  '';
+  # powerManagement.resumeCommands = ''
+  #   ${pkgs.systemd}/bin/systemctl restart fprintd
+  # '';
+  # services.udev.extraRules = ''
+  #   ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
+  # '';
 
   services.irqbalance.enable = false;
   services.scx.enable = true;
@@ -128,8 +128,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.displayManager.gdm.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.gdm.enable = true;
+  # services.displayManager.sddm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
 
