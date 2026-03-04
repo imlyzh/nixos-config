@@ -250,6 +250,7 @@
   };
 
   services.xremap = {
+    enable= true;
     withGnome = true;
     # withKde = true;
     # withX11 = true;
