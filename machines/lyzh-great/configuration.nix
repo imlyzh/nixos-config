@@ -27,7 +27,7 @@
     "threadirqs"
     "irqaffinity=4-7"
     "rcu_nocbs=0-3"
-    "usbcore.autosuspend=-1"
+    # "usbcore.autosuspend=-1"
   ];
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq_codel";
