@@ -20,7 +20,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_6_18;
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelModules = [ "intel_hfi" "xe" "tun" "tcp_bbr" ];
+  boot.kernelModules = [ "intel_hfi" "intel_vsec" "intel_hid" "soc_button_array" "xe" "tun" "tcp_bbr" ];
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
