@@ -24,7 +24,7 @@
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
-    "threadirqs"
+    # "threadirqs"
     "irqaffinity=4-7"
     "rcu_nocbs=0-3"
     # "usbcore.autosuspend=-1"
@@ -247,8 +247,6 @@
     CARGO_HOME = "\${HOME}/.cargo";
     CC = "clang";
     CXX = "clang++";
-
-    NIXOS_OZONE_WL = "1";
   };
 
   services.xremap = {
@@ -304,8 +302,6 @@ keymap:
   };
 
   services.tailscale.enable = true;
-  services.v2raya.enable = true;
-  services.mihomo.webui = pkgs.metacubexd;
   programs.clash-verge = {
     enable = true;
     autoStart = true;
