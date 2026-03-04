@@ -24,9 +24,11 @@
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
-    # "threadirqs"
+    "threadirqs"
     "irqaffinity=4-7"
+    "isolcpus=managed_irq,0-3"
     "rcu_nocbs=0-3"
+    "nohz_full=0-3"
     # "usbcore.autosuspend=-1"
   ];
   boot.kernel.sysctl = {
