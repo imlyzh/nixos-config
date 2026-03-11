@@ -24,7 +24,7 @@
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
-    "threadirqs"
+    # "threadirqs"
     "usbcore.autosuspend=-1"
   ];
   boot.kernel.sysctl = {
@@ -108,7 +108,7 @@
     ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
   '';
 
-  services.irqbalance.enable = false;
+  services.irqbalance.enable = true;
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
   # services.scx.scheduler = "scx_bpfland";
