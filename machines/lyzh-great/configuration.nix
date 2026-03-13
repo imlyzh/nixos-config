@@ -24,7 +24,7 @@
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
-    "threadirqs"
+    # "threadirqs"
 
     "intel_iommu=on"
     "iommu=pt"
@@ -36,7 +36,11 @@
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq_codel";
     "net.ipv4.tcp_congestion_control" = "bbr";
+
+    "vm.max_map_count" = 2147483642;
   };
+
+  systemd.oomd.enable = false;
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
