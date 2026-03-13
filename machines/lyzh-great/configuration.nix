@@ -114,10 +114,9 @@
     ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
   '';
 
-  services.irqbalance.enable = true;
-  services.scx.enable = true;
-  services.scx.scheduler = "scx_lavd";
-  # services.scx.scheduler = "scx_bpfland";
+  # services.irqbalance.enable = true;
+  # services.scx.enable = true;
+  # services.scx.scheduler = "scx_lavd";
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
