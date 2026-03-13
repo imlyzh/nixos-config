@@ -213,7 +213,12 @@
   programs.partition-manager.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
   programs.gamemode.enable = true;
 
 

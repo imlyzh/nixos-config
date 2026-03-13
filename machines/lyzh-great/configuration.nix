@@ -24,7 +24,15 @@
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
-    # "threadirqs"
+    "threadirqs"
+
+    "intel_iommu=on"
+    "iommu=pt"
+
+    "split_lock_detect=off"
+    "intel_iommu=on"
+    "iommu=pt"
+
     "usbcore.autosuspend=-1"
   ];
   boot.kernel.sysctl = {
@@ -311,7 +319,12 @@ keymap:
   programs.partition-manager.enable = true;
   programs.kdeconnect.enable = true;
   programs.thunar.enable = true;
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
   programs.gamemode.enable = true;
   # programs.mangohud.enable = true;
 
