@@ -24,7 +24,9 @@
   boot.kernelParams = [
     "intel_pstate=active"
     "intel_hfi=on"
-    "threadirqs"
+    # "threadirqs"
+
+    "xe.enable_psr=0"
 
     "intel_iommu=on"
     "iommu=pt"

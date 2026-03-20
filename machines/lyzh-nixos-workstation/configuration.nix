@@ -87,6 +87,7 @@
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver libva-vdpau-driver libvdpau-va-gl intel-compute-runtime];
   hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
   #hardware.steam-hardware.enable = true;
