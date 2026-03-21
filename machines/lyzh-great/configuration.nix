@@ -22,22 +22,26 @@
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "intel_hfi" "intel_vsec" "intel_hid" "soc_button_array" "xe" "tun" "tcp_bbr" ];
   boot.kernelParams = [
-    "intel_pstate=active"
+    # "intel_pstate=active"
     "intel_hfi=on"
-    # "threadirqs"
+
+    "iwlwifi.power_save=0" 
+    # "pcie_aspm=off"
 
     "xe.enable_psr=0"
 
     "intel_iommu=on"
-    "iommu=pt"
-
-    "split_lock_detect=off"
+    # "iommu=pt"
 
     "usbcore.autosuspend=-1"
   ];
   boot.kernel.sysctl = {
-    "net.core.default_qdisc" = "fq_codel";
+    "net.core.rmem_max" = 16777216;
+    "net.core.wmem_max" = 16777216;
+    "net.ipv4.tcp_rmem" = "4096 87380 16777216";
+    "net.ipv4.tcp_wmem" = "4096 65536 16777216";
     "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.core.default_qdisc" = "fq";
 
     "vm.max_map_count" = 2147483642;
   };
@@ -112,17 +116,17 @@
 
   zramSwap.enable = true;
 
-  powerManagement.enable = true;
-  # powerManagement.resumeCommands = ''
-  #   ${pkgs.systemd}/bin/systemctl restart fprintd
-  # '';
   # services.udev.extraRules = ''
   #   ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{power/control}="on"
   # '';
+  # powerManagement.resumeCommands = ''
+  #   ${pkgs.systemd}/bin/systemctl restart fprintd
+  # '';
+  powerManagement.enable = true;
 
-  # services.irqbalance.enable = true;
-  # services.scx.enable = true;
-  # services.scx.scheduler = "scx_lavd";
+  services.scx.enable = true;
+  services.scx.scheduler = "scx_lavd";
+  services.irqbalance.enable = true;
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
