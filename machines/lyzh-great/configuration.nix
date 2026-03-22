@@ -262,11 +262,11 @@
     CXX = "clang++";
   };
 
-  services.xremap = {
-    enable = true;
-    withGnome = true;
-    # withKde = true;
-    # withX11 = true;
+#   services.xremap = {
+#     enable = true;
+#     withGnome = true;
+#     # withKde = true;
+#     # withX11 = true;
 
 #   yamlConfig = ''
 # keymap:
@@ -312,7 +312,7 @@
 #       Alt-t: C-Shift-t
 #       Alt-w: C-Shift-w
 #   '';
-  };
+#   };
 
   services.tailscale.enable = true;
   programs.clash-verge = {
