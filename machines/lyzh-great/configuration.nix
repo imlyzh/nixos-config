@@ -268,50 +268,50 @@
     # withKde = true;
     # withX11 = true;
 
-  yamlConfig = ''
-keymap:
-  - name: "macOS 核心快捷键 (使用物理 Alt 键模拟 Cmd)"
-    remap:
-      # ================= 基础编辑 =================
-      Alt-c: C-c       # 大拇指 Alt+C -> 发送 Ctrl+C (复制)
-      Alt-v: C-v       # 大拇指 Alt+V -> 发送 Ctrl+V (粘贴)
-      Alt-x: C-x       # 剪切
-      Alt-z: C-z       # 撤销
-      Alt-Shift-z: C-Shift-z # 重做
-      Alt-a: C-a       # 全选
-      Alt-s: C-s       # 保存
-      Alt-f: C-f       # 查找
-      Alt-p: C-p       # 打印
+#   yamlConfig = ''
+# keymap:
+#   - name: "macOS 核心快捷键 (使用物理 Alt 键模拟 Cmd)"
+#     remap:
+#       # ================= 基础编辑 =================
+#       Alt-c: C-c       # 大拇指 Alt+C -> 发送 Ctrl+C (复制)
+#       Alt-v: C-v       # 大拇指 Alt+V -> 发送 Ctrl+V (粘贴)
+#       Alt-x: C-x       # 剪切
+#       Alt-z: C-z       # 撤销
+#       Alt-Shift-z: C-Shift-z # 重做
+#       Alt-a: C-a       # 全选
+#       Alt-s: C-s       # 保存
+#       Alt-f: C-f       # 查找
+#       Alt-p: C-p       # 打印
 
-      # ================= 窗口与标签页 =================
-      Alt-w: C-w       # 关闭当前标签页
-      Alt-t: C-t       # 新建标签页
-      Alt-n: C-n       # 新建窗口
-      Alt-q: Alt-F4    # 退出程序 (完美复刻 Cmd+Q！)
+#       # ================= 窗口与标签页 =================
+#       Alt-w: C-w       # 关闭当前标签页
+#       Alt-t: C-t       # 新建标签页
+#       Alt-n: C-n       # 新建窗口
+#       Alt-q: Alt-F4    # 退出程序 (完美复刻 Cmd+Q！)
 
-      # ================= 文本光标移动 (Mac 灵魂) =================
-      Alt-left: Home        # Cmd+左 -> 跳到行首
-      Alt-right: End        # Cmd+右 -> 跳到行尾
-      Alt-up: C-Home        # Cmd+上 -> 跳到文档开头
-      Alt-down: C-End       # Cmd+下 -> 跳到文档结尾
+#       # ================= 文本光标移动 (Mac 灵魂) =================
+#       Alt-left: Home        # Cmd+左 -> 跳到行首
+#       Alt-right: End        # Cmd+右 -> 跳到行尾
+#       Alt-up: C-Home        # Cmd+上 -> 跳到文档开头
+#       Alt-down: C-End       # Cmd+下 -> 跳到文档结尾
 
-      # ================= 按单词跳跃 (Mac 里的 Option 键) =================
-      # 在 PC 键盘上，Win 键的位置恰好对应 Mac 的 Option 键
-      Super-left: C-left    # Win+左 -> 按单词向左跳
-      Super-right: C-right  # Win+右 -> 按单词向右跳
+#       # ================= 按单词跳跃 (Mac 里的 Option 键) =================
+#       # 在 PC 键盘上，Win 键的位置恰好对应 Mac 的 Option 键
+#       Super-left: C-left    # Win+左 -> 按单词向左跳
+#       Super-right: C-right  # Win+右 -> 按单词向右跳
 
-  - name: "终端特例 (保护终端的进程终止功能)"
-    application:
-      # ⚠️ 注意：填入你真实使用的终端名字
-      only: [gnome-terminal, ghostty, kitty, alacritty, konsole, wezterm, foot]
-    remap:
-      # 在终端里，大拇指按 Alt+C 发送 Ctrl+Shift+C (复制)
-      # 小拇指按真正的 Ctrl+C 依然会原样传递给终端 (终止进程)
-      Alt-c: C-Shift-c
-      Alt-v: C-Shift-v
-      Alt-t: C-Shift-t
-      Alt-w: C-Shift-w
-  '';
+#   - name: "终端特例 (保护终端的进程终止功能)"
+#     application:
+#       # ⚠️ 注意：填入你真实使用的终端名字
+#       only: [gnome-terminal, ghostty, kitty, alacritty, konsole, wezterm, foot]
+#     remap:
+#       # 在终端里，大拇指按 Alt+C 发送 Ctrl+Shift+C (复制)
+#       # 小拇指按真正的 Ctrl+C 依然会原样传递给终端 (终止进程)
+#       Alt-c: C-Shift-c
+#       Alt-v: C-Shift-v
+#       Alt-t: C-Shift-t
+#       Alt-w: C-Shift-w
+#   '';
   };
 
   services.tailscale.enable = true;
