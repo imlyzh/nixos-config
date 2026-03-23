@@ -26,12 +26,11 @@
     "intel_hfi=on"
 
     "iwlwifi.power_save=0" 
-    # "pcie_aspm=off"
+    "pcie_aspm=off"
 
     "xe.enable_psr=0"
 
     "intel_iommu=on"
-    # "iommu=pt"
 
     "usbcore.autosuspend=-1"
   ];
