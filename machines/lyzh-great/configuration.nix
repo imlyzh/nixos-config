@@ -24,20 +24,20 @@
   boot.kernelParams = [
     # "intel_pstate=active"
     "intel_hfi=on"
-    "iwlwifi.power_save=0" 
+    "iwlwifi.power_save=0"
+    "split_lock_detect=off"
     "xe.enable_psr=0"
     "intel_iommu=on"
     "usbcore.autosuspend=-1"
-    "split_lock_detect=off"
+    
   ];
   boot.kernel.sysctl = {
-    "net.core.rmem_max" = 16777216;
-    "net.core.wmem_max" = 16777216;
-    "net.ipv4.tcp_rmem" = "4096 87380 16777216";
-    "net.ipv4.tcp_wmem" = "4096 65536 16777216";
+    # "net.core.rmem_max" = 16777216;
+    # "net.core.wmem_max" = 16777216;
+    # "net.ipv4.tcp_rmem" = "4096 87380 16777216";
+    # "net.ipv4.tcp_wmem" = "4096 65536 16777216";
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "fq";
-
     "vm.max_map_count" = 2147483642;
   };
 
