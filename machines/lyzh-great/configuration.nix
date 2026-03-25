@@ -122,7 +122,7 @@
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
   services.irqbalance.enable = true;
-  services.thermald.enable = false;
+  # services.thermald.enable = false;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
   # services.auto-cpufreq.settings = {
@@ -236,13 +236,12 @@
     gnomeExtensions.xremap
 
     lutris
-    wineWowPackages.stable
-    wineWowPackages.staging
-    winetricks
-    dxvk
-    vkd3d-proton
-
     mangohud
+    # wineWowPackages.stable
+    # wineWowPackages.staging
+    # winetricks
+    # dxvk
+    # vkd3d-proton
 
     rnote
     openboard
@@ -257,7 +256,7 @@
     CXX = "clang++";
   };
 
-  services.xremap.enable = false;
+  # services.xremap.enable = false;
 #   services.xremap = {
 #     enable = true;
 #     withGnome = true;
