@@ -117,11 +117,11 @@
   # powerManagement.resumeCommands = ''
   #   ${pkgs.systemd}/bin/systemctl restart fprintd
   # '';
-  powerManagement.enable = true;
+  # powerManagement.enable = true;
 
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
-  services.irqbalance.enable = true;
+  services.irqbalance.enable = false;
   # services.thermald.enable = false;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
@@ -325,7 +325,7 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-    gamescopeSession.enable = true;
+    # gamescopeSession.enable = true;
   };
   programs.gamemode.enable = true;
   # programs.mangohud.enable = true;
