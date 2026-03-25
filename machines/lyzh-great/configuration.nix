@@ -256,7 +256,7 @@
     CXX = "clang++";
   };
 
-  # services.xremap.enable = false;
+  services.xremap.enable = false;
 #   services.xremap = {
 #     enable = true;
 #     withGnome = true;
