@@ -321,8 +321,9 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-    # gamescopeSession.enable = true;
+    gamescopeSession.enable = true;
   };
+  programs.dconf.enable = true;
   programs.gamemode.enable = true;
   # programs.mangohud.enable = true;
 
