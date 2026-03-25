@@ -24,15 +24,11 @@
   boot.kernelParams = [
     # "intel_pstate=active"
     "intel_hfi=on"
-
     "iwlwifi.power_save=0" 
-    "pcie_aspm=off"
-
     "xe.enable_psr=0"
-
     "intel_iommu=on"
-
     "usbcore.autosuspend=-1"
+    "split_lock_detect=off"
   ];
   boot.kernel.sysctl = {
     "net.core.rmem_max" = 16777216;
@@ -45,7 +41,7 @@
     "vm.max_map_count" = 2147483642;
   };
 
-  systemd.oomd.enable = false;
+  systemd.oomd.enable = true;
 
   networking.hostName = "lyzh-great"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -126,7 +122,7 @@
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
   services.irqbalance.enable = true;
-  services.thermald.enable = true;
+  services.thermald.enable = false;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
   # services.auto-cpufreq.settings = {
@@ -360,7 +356,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
   home-manager.backupFileExtension = "backup";
 }
