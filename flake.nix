@@ -2,7 +2,7 @@
   description = "Lyzh's NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +28,7 @@
       flake = false;
     };
 
-    xremap-flake.url = "github:xremap/nix-flake";
+    # xremap-flake.url = "github:xremap/nix-flake";
   };
 
   outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, xremap-flake, ... }@inputs:
@@ -65,7 +65,7 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
-            xremap-flake.nixosModules.default
+            # xremap-flake.nixosModules.default
           ];
         };
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
@@ -99,7 +99,7 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
-            xremap-flake.nixosModules.default
+            # xremap-flake.nixosModules.default
           ];
         };
         "lyzh-nixos-workstation" = nixpkgs.lib.nixosSystem {
@@ -133,7 +133,7 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
-            xremap-flake.nixosModules.default
+            # xremap-flake.nixosModules.default
           ];
         };
 
