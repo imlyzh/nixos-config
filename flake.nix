@@ -31,7 +31,7 @@
     # xremap-flake.url = "github:xremap/nix-flake";
   };
 
-  outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, xremap-flake, ... }@inputs:
+  outputs = { self, nixpkgs, rust-overlay, home-manager, home-config, dotfiles, ... }@inputs:
     {
       nixosConfigurations = {
         "lyzh-great" = nixpkgs.lib.nixosSystem {
