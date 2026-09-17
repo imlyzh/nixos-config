@@ -18,21 +18,19 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelModules = [ "tun" "tcp_bbr" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelParams = [
     "intel_pstate=active"
-    "intel_hfi=on"
     "threadirqs"
-    "irqaffinity=16-23"
-    "rcu_nocbs=0-15"
     "usbcore.autosuspend=-1"
     "nvidia-drm.modeset=1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
   boot.kernel.sysctl = {
-    "net.core.default_qdisc" = "fq";
+    "net.core.default_qdisc" = "cake";
     "net.ipv4.tcp_congestion_control" = "bbr";
   };
 
@@ -94,6 +92,7 @@
 
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
+  services.scx.extraArgs = [ "--autopower" ];
   # services.scx.scheduler = "scx_rusty";
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;
