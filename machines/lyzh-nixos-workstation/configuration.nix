@@ -189,7 +189,6 @@
     #code-server
 
     tailscale
-    clash-verge-rev
     #v2raya
     firefox
 
@@ -235,9 +234,9 @@
 
   programs.clash-verge = {
     enable = true;
-    autoStart = true;
     serviceMode = true;
     tunMode = true;
+    package = pkgs.clash-verge-rev;
   };
 
   programs.zsh.enable = true;

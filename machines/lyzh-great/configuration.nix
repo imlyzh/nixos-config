@@ -29,7 +29,7 @@
     "xe.enable_psr=0"
     "intel_iommu=on"
     "usbcore.autosuspend=-1"
-    
+
   ];
   boot.kernel.sysctl = {
     "net.ipv4.tcp_congestion_control" = "bbr";
@@ -218,7 +218,6 @@
     #code-server
 
     tailscale
-    clash-verge-rev
     #v2raya
     firefox
 
@@ -308,9 +307,9 @@
   services.tailscale.enable = true;
   programs.clash-verge = {
     enable = true;
-    autoStart = true;
     serviceMode = true;
     tunMode = true;
+    package = pkgs.clash-verge-rev;
   };
 
   programs.zsh.enable = true;

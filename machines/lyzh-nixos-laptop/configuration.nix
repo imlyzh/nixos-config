@@ -173,7 +173,6 @@
     firefox
 
     tailscale
-    clash-verge-rev
     #v2raya
   ];
 
@@ -205,9 +204,9 @@
   services.tailscale.enable = true;
   programs.clash-verge = {
     enable = true;
-    autoStart = true;
     serviceMode = true;
     tunMode = true;
+    package = pkgs.clash-verge-rev;
   };
 
   programs.zsh.enable = true;
@@ -273,4 +272,3 @@
 
   home-manager.backupFileExtension = "backup";
 }
-
