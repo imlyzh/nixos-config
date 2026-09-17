@@ -195,9 +195,6 @@
     samba
 
     lutris
-    wineWowPackages.stable
-    wineWowPackages.staging
-    winetricks
     dxvk
     vkd3d-proton
   ];
